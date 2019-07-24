@@ -1,26 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState} from 'react';
+// import { BrowserRouter as Router, Route} from "react-router-dom";
+// import './App.css';
+import TeamData from './TeamData';
+import Form from './Form';
 
-function App() {
+
+const Teammembers = () => {
+  const [team, setTeam] = useState(TeamData);
+  console.log(team)
+
+  const formChange = newMember => {
+    setTeam([...team, newMember]);
+  };
+
+  // const team = response.data.results;
+  // setTeam(team);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className = "member-list">
+      <h2> Sign Up to Join the Team </h2>
+      <Form teamAdd={formChange} />
+      <h1>Our Current Team Members</h1>
+    <div>
+     {team.map((member, index) => {
+       return (
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {team.name}
+          {team.email}
+          {team.role}
+          {team.skill}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       )
+     })}
     </div>
-  );
+  </div>
+    );
 }
 
-export default App;
+export default Teammembers;
+
+
+
+
+// import React, { useState} from 'react';
+// import { BrowserRouter as Router, Route} from "react-router-dom";
+// import './App.css';
+// import TeamData from './TeamData';
+
+
+// export default function App() {
+//   const [name, setName] = useState( [] );
+
+//   return (
+//   <Router>
+//    <div>
+//      <TeamData list={TeamData} />
+//        <Route path='/' exact component={TeamData} />
+//    </div>
+//  </Router>
+//   );
+// }
